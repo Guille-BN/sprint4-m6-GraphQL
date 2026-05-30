@@ -14,8 +14,8 @@ Con esto, toda la lógica para elegir las tarjetas está en un solo lugar y agre
 
 ## Para ejecutar:
 ### Frontend:
+En la carpeta [frontend](/frontGraphQL/exampleGraphQL/):
 ```zsh
-cd frontGraphQL/exampleGraphQL
 npm install
 npm run dev
 ```
