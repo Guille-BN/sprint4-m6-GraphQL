@@ -1,0 +1,54 @@
+# Define el tipo Post (estructura de datos que se puede consultar en la API)
+type Post {
+    id: ID!
+    createdAt: String,
+    updatedAt: String,
+    deletedAt: String,
+
+    commonName: String,
+    scientificName: String,
+    gender: String,
+    diet: String,
+    extant: Boolean,
+    genus: String,
+    type: String,
+}
+
+# Define el input PostDto (datos que el cliente puede enviar para crear/guardar un Post)
+input PostDto{
+    commonName: String,
+    scientificName: String,
+    gender: String,
+    diet: String,
+    extant: Boolean,
+    genus: String,
+    type: String,
+}
+
+# Define las consultas disponibles para obtener datos (queries)
+type Query{
+    getAllPosts: [Post]
+    getRecentPosts(count:Int,offset:Int): [Post]
+    getPostById(id: ID!): Post
+    #Important------
+    getAnimalsByType(type: String!): [Post]
+    getAnimalsByGender(gender: String!): [Post]
+    getAnimalsByDiet(diet: String!): [Post]
+    getExtantAnimals: [Post]
+    getExtintAnimals: [Post]
+    posts(filter: PostFilterInput): [Post]
+}
+
+# Input type to support combined filtering
+input PostFilterInput {
+    type: String
+    gender: String
+    diet: String
+    extant: Boolean
+}
+
+# Define las operaciones para modificar datos (mutations)
+type Mutation{
+    deletePostById(id:ID!): Post
+    savePost(postDto: PostDto!): Post
+}
